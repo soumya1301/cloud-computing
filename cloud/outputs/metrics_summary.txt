@@ -1,0 +1,52 @@
+Dataset: Google Cluster Workload Trace
+Version: clusterdata-2011-2
+Source : https://github.com/google/cluster-data
+
+======================================================================
+  TRAIN CLASSIFICATION METRICS
+======================================================================
+  Num samples         : 400
+  Accuracy            : 0.557500 (55.7500%)
+  Balanced Accuracy   : 0.575510 (57.5510%)
+  Cohen's Kappa       : 0.340045
+  Macro F1            : 0.554030
+  Weighted F1         : 0.557035
+  Macro Precision     : 0.564502
+  Macro Recall        : 0.575510
+----------------------------------------------------------------------
+  Per-class metrics:
+  Class                     Prec     Rec      F1  Support
+  balanced                 0.439   0.644   0.523       90
+  cpu_intensive            0.566   0.638   0.600      141
+  memory_intensive         0.688   0.444   0.540      169
+----------------------------------------------------------------------
+  Confusion Matrix (rows=true, cols=pred):
+    balanc  cpu_in  memory
+  balanc      58      21      11
+  cpu_in      28      90      23
+  memory      46      48      75
+
+======================================================================
+  TEST CLASSIFICATION METRICS
+======================================================================
+  Num samples         : 100
+  Accuracy            : 0.290000 (29.0000%)
+  Balanced Accuracy   : 0.319372 (31.9372%)
+  Cohen's Kappa       : -0.034985
+  Macro F1            : 0.291308
+  Weighted F1         : 0.282633
+  Macro Precision     : 0.300000
+  Macro Recall        : 0.319372
+----------------------------------------------------------------------
+  Per-class metrics:
+  Class                     Prec     Rec      F1  Support
+  balanced                 0.250   0.391   0.305       23
+  cpu_intensive            0.275   0.379   0.319       29
+  memory_intensive         0.375   0.188   0.250       48
+----------------------------------------------------------------------
+  Confusion Matrix (rows=true, cols=pred):
+    balanc  cpu_in  memory
+  balanc       9       5       9
+  cpu_in      12      11       6
+  memory      15      24       9
+

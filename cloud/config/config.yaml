@@ -1,0 +1,119 @@
+data:
+  default_path: "./data/google_cluster/raw/"
+  trace_version: "clusterdata-2011-2"
+  trace_start_timestamp: 600
+  time_interval_seconds: 300
+  history_window_seconds: 300
+
+tables:
+  task_usage:
+    dir: "task_usage"
+    columns:
+      - "start_time"
+      - "end_time"
+      - "job_id"
+      - "task_index"
+      - "machine_id"
+      - "cpu_rate"
+      - "canonical_memory_usage"
+      - "assigned_memory_usage"
+      - "unmapped_page_cache"
+      - "total_page_cache"
+      - "max_memory_usage"
+      - "disk_io_time"
+      - "local_disk_space_used"
+      - "cpu_rate_sample"
+      - "cpi"
+      - "mai"
+      - "sample_portality"
+      - "agg_type_used_cpu"
+      - "agg_type_used_memory"
+    required_columns:
+      - "job_id"
+      - "task_index"
+      - "machine_id"
+      - "cpu_rate"
+      - "canonical_memory_usage"
+      - "start_time"
+      - "cpu_rate_sample"
+
+  task_events:
+    dir: "task_events"
+    columns:
+      - "timestamp"
+      - "missing_info"
+      - "job_id"
+      - "task_index"
+      - "machine_id"
+      - "event_type"
+      - "user"
+      - "scheduling_class"
+      - "priority"
+      - "cpu_request"
+      - "memory_request"
+      - "disk_space_request"
+      - "machines_restriction"
+    required_columns:
+      - "job_id"
+      - "task_index"
+      - "timestamp"
+      - "event_type"
+      - "cpu_request"
+      - "memory_request"
+      - "scheduling_class"
+      - "priority"
+
+  job_events:
+    dir: "job_events"
+    columns:
+      - "timestamp"
+      - "missing_info"
+      - "job_id"
+      - "event_type"
+      - "user"
+      - "scheduling_class"
+      - "job_name"
+      - "logical_job_name"
+    required_columns:
+      - "job_id"
+      - "timestamp"
+      - "event_type"
+      - "scheduling_class"
+
+  machine_events:
+    dir: "machine_events"
+    columns:
+      - "timestamp"
+      - "machine_id"
+      - "event_type"
+      - "platform_id"
+      - "capacity_cpu"
+      - "capacity_memory"
+    required_columns:
+      - "machine_id"
+      - "capacity_cpu"
+      - "capacity_memory"
+      - "platform_id"
+
+  machine_attributes:
+    dir: "machine_attributes"
+    optional: true
+
+preprocessing:
+  vm_type_threshold: 1.5
+  epsilon: 0.0001
+  handle_missing: "drop"
+  apply_feature_scaling: true
+  scaling_method: "minmax"
+  max_missing_pct_allowed: 5.0
+
+split:
+  train_ratio: 0.8
+  validation_ratio: 0.1
+  temporal_split: true
+  random_seed: 42
+
+sample_mode:
+  num_tasks: 500
+  num_machines: 100
+  num_intervals: 10
